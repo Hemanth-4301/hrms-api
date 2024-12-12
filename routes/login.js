@@ -3,12 +3,15 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User"); // Adjust according to your models
 const router = express.Router();
+const dotenv = require("dotenv");
+dotenv.config();
 
 // Login Route
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
+  
     // Check if the user exists
     const user = await User.findOne({ email });
     if (!user) {
